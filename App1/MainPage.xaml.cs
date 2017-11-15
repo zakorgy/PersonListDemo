@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -22,32 +23,22 @@ namespace App1
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private System.Collections.ObjectModel.ObservableCollection<Person> personlist;
         public MainPage()
         {
             this.InitializeComponent();
-            personlist = new System.Collections.ObjectModel.ObservableCollection<Person>()
-            {
-                new Person(){Name="Bubu", Age=3},
-                new Person(){Name="Bub2", Age=5},
-            };
-            Random rnd = new Random();
-            for(int i = 0; i < 20; i++)
-            {
-                personlist.Add(new Person() {
-                    Name = "Huba" + i,
-                    Age = rnd.Next(1, 100)
-                });
-            }
-            personListView.ItemsSource = personlist;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            personlist.Add(new Person() {
-                Name = "Dynamic",
-                Age = 2
-            });
+            CallWebSite();
+        }
+
+        private async void CallWebSite()
+        {
+            HttpClient client = new HttpClient();
+            var result = await client.GetAsync("https://www.bing.com");
+
+            resultTextBlock.Text = result.StatusCode.ToString();
         }
     }
 }

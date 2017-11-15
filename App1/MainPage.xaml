@@ -7,28 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Page.Resources>
-        <Style x:Name="MyButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="Red"/>
-        </Style>
-    </Page.Resources>
-
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ListView x:Name="personListView">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Name:</TextBlock>
-                        <TextBlock Text="{Binding Name}"></TextBlock>
-                        <TextBlock>Age:</TextBlock>
-                        <TextBlock Text="{Binding Age}"></TextBlock>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <Button HorizontalAlignment="Right" 
-                Style ="{StaticResource MyButtonStyle}"
-                Content="Add Person"
-                Click="Button_Click"/>
-    </Grid>
+    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Button Click="Button_Click">Call website</Button>
+        <TextBlock x:Name="resultTextBlock" Text="No result"></TextBlock>
+    </StackPanel>
 </Page>
